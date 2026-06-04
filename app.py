@@ -18,8 +18,7 @@ def get_db_connection():
         password=DB_PASSWORD
     )
 
-# Initialize database table
-@app.before_first_request
+# 1. Define the function normally (without the broken decorator)
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -49,4 +48,8 @@ def add_data():
     return jsonify({"status": "Data inserted successfully!"}), 201
 
 if __name__ == '__main__':
+    # 2. Initialize the database using the app context before starting the server
+    with app.app_context():
+        create_tables()
+        
     app.run(host='0.0.0.0', port=8080)
