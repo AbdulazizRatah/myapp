@@ -5,10 +5,10 @@ import psycopg2
 app = Flask(__name__)
 
 # Retrieve database connection details from environment variables
-DB_HOST = os.getenv("DB_HOST", "postgresql")
-DB_NAME = os.getenv("DB_DATABASE", "myapp_db")
-DB_USER = os.getenv("DB_USER", "db_user")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "db_password")
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_DATABASE")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 def get_db_connection():
     return psycopg2.connect(
